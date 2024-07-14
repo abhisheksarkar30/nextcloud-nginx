@@ -1,0 +1,19 @@
+services:
+    nginx:
+        image: nginx
+        ports:
+            - "8443:443"
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./:/var/app
+            - ../../local-ssl/certs:/var/certs
+        #command: ["nginx", "-c", "/var/app/nginx.conf"]
+    nextcloud:
+        image: nextcloud
+        environment:
+            - OVERWRITEHOST=192.168.0.253:8443
+            - OVERWRITEPROTOCOL=https
+        #ports:
+        #    - "8080:80"
+        #volumes:
+        #    - ./config.php:/var/www/html/config/config.php
