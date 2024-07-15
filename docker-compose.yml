@@ -5,7 +5,7 @@ services:
           - db.env
         ports:
             - "8443:443"
-        restart: always
+        restart: unless-stopped
         volumes:
             - ./nginx.conf:/etc/nginx/nginx.conf:ro
             - ./:/var/app
@@ -19,16 +19,23 @@ services:
             - OVERWRITEHOST=192.168.0.253:8443
             - OVERWRITEPROTOCOL=https
             - POSTGRES_HOST=postgres-db
-        restart: always
+            - REDIS_HOST=redis
+        restart: unless-stopped
+        depends_on:
+            - redis
+            - postgres-db
         volumes:
             - nc_data:/var/www/html
     postgres-db:
         image: postgres:alpine
         env_file:
           - db.env
-        restart: always
+        restart: unless-stopped
         volumes:
           - db_data:/var/lib/postgresql/data
+    redis:
+        image: redis:alpine
+        restart: unless-stopped
 volumes:
     db_data:
     nc_data:
