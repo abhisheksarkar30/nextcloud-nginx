@@ -1,5 +1,5 @@
 # nextcloud-nginx
-NextCloud file sharing backed by postgres-db with Nginx proxy
+NextCloud file sharing backed by postgres-db & redis with Nginx proxy
 
 P.S:
 1. External drives don't work properly with docker containers.
