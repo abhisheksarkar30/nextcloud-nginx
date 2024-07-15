@@ -11,3 +11,5 @@ Commands:
 3. To add new trusted domain, use: docker exec --user www-data \<nextcloud-container-id\> php occ config:system:set trusted_domains \<index\> --value=\<domain-name\>
 4. To remove maintenance window warning, use: docker exec --user www-data \<nextcloud-container-id\> php occ config:system:set maintenance_window_start --type=integer --value=1 (1 AM UTC)
 5. To remove default-phone-region warning, use: docker exec --user www-data \<nextcloud-container-id\> php occ config:system:set default_phone_region --value=IN (INDIA)
+
+Reference: [NextCloud OCC Commands](https://docs.nextcloud.com/server/13/admin_manual/configuration_server/occ_command.html)
